@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     set :views, 'app/views'
     set :public_folder, 'public'
-    set :session_secrete, "virtualflyboxsecrete11221"
+    set :session_secret, "virtualflyboxsecrete11221"
   end
 
   helpers do

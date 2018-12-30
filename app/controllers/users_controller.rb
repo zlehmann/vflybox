@@ -11,11 +11,18 @@ class UsersController < ApplicationController
   post '/signup' do
     @user = User.create(:username => params[:username], :password => params[:password])
     session[:user_id] = @user.id
-    redirect to "/users/show/#{@user.id}"
+    redirect to "/users/show"
   end
 
-  get '/users/show/:id' do
-    @user = User.find(params[:id])
+  get '/users/show' do
+    redirect_if_not_logged_in
+    @user = current_user
     erb :'/users/show'
+  end
+
+  get '/logout' do
+    redirect_if_not_logged_in
+    session.clear
+    redirect to "/"
   end
 end
