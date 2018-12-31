@@ -14,6 +14,14 @@ class UsersController < ApplicationController
     redirect to "/users/show"
   end
 
+  get '/login' do
+    if !session[:user_id]
+      erb :'/users/login'
+    else
+      redirect to "/users/:#{session[:user_id]}"
+    end
+  end
+
   get '/users/show' do
     redirect_if_not_logged_in
     @user = current_user

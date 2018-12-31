@@ -6,4 +6,6 @@ end
 
 use Rack::MethodOverride
 use UsersController
+use FliesController
+
 run ApplicationController
