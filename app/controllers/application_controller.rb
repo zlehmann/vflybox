@@ -1,12 +1,12 @@
 require './config/environment'
-require 'sinatra/base'
 
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+
   configure do
     enable :sessions
     set :views, 'app/views'
-    set :public_folder, 'public'
+    set :public_folder, 'app/public'
     set :session_secret, "virtualflyboxsecrete11221"
   end
 

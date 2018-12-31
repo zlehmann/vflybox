@@ -2,12 +2,14 @@
 <html>
   <head>
     <title>Virtual Flybox</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../style.css" >
   </head>
   <body>
+    <h1>Virtual Flybox</h1>
     <nav>
       <% if logged_in? %>
-        <p>User: <%= current_user.username %></p>
+        <p>Logged in as: <%= current_user.username %></p>
         <a href="/flyboxes">View Flyboxes</a>
         <a href="/flies">View Flies</a>
         <a href="/logout">Logout</a>
@@ -17,8 +19,10 @@
       <% end %>
     </nav>
     <div class='content'>
-      <h1>Virtual Flybox</h1>
       <%= yield %>
     </div>
   </body>
+  <footer>
+    <p>Zachary Lehmann, Flatiron School - Sinatra Final Project, 2019</p>
+  </footer>
 </html>
