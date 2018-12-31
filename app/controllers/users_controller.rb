@@ -22,6 +22,17 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/login' do
+    @user = User.find_by(:username => params[:username])
+    if @user && user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to "/users/:#{session[:user_id]}"
+    else
+      @error = "User password combination does not exist."
+      erb :error
+    end
+  end
+
   get '/users/show' do
     redirect_if_not_logged_in
     @user = current_user
