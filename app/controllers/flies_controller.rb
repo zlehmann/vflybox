@@ -31,6 +31,7 @@ class FliesController < ApplicationController
     @fly.name = params[:fly_name]
     @fly.flyboxes.clear
     @fly.flyboxes = Flybox.find(params[:flybox])
+    @fly.save
     redirect to "/flies/#{@fly.id}"
   end
 end

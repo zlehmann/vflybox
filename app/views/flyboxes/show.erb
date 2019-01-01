@@ -1,6 +1,21 @@
 <h2>Flybox: <%= @flybox.name %></h2>
 
-<h3>Flies in flybox:</h3>
-<% @flybox.flies.each do |fly| %>
-  <a href="/flies/<%= fly.id %>"><%= fly.name %></a><br>
-<% end %>
+<div class="row">
+  <div class="container">
+    <div class="col-sm-8">
+      <h3>Flies in flybox:</h3>
+      <% @flybox.flies.each do |fly| %>
+        <a href="/flies/<%= fly.id %>"><%= fly.name %></a><br>
+      <% end %>
+    </div>
+
+    <div class="col-sm-8">
+      <p>Edit this flybox:</p>
+      <form method="POST" action="/flyboxes/edit/<%= @flybox.id %>">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <p>Flybox name: <input type='text' name='flybox_name' default="<%= @flybox.name %>" placeholder="<%= @flybox.name %>"><br></p>
+        <input type='submit' name='Edit Flybox'>
+      </form>
+    </div>
+  </div><!--container-->
+</div><!--row-->

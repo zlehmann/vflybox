@@ -20,4 +20,12 @@ class FlyboxesController < ApplicationController
     @flybox = Flybox.find(params[:id])
     erb :'/flyboxes/show'
   end
+
+  patch '/flyboxes/edit/:id' do
+    @user = current_user
+    @flybox = Flybox.find(params[:id])
+    @flybox.name = params[:flybox_name]
+    @flybox.save
+    redirect to "/flyboxes/#{@flybox.id}"
+  end
 end

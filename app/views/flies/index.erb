@@ -1,5 +1,7 @@
 <h2>Flies</h2>
 <br>
-<% @flies.each do |fly| %>
-  <a href="/flies/<%= fly.id %>"><%= fly.name %></a><br>
-<% end %>
+<div class="cen-list">
+  <% @flies.each do |fly| %>
+    <a href="/flies/<%= fly.id %>"><%= fly.name %></a><br>
+  <% end %>
+</div>
