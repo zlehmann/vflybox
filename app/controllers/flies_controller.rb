@@ -34,4 +34,11 @@ class FliesController < ApplicationController
     @fly.save
     redirect to "/flies/#{@fly.id}"
   end
+
+  delete '/flies/delete/:id' do
+    @user = current_user
+    @fly = Fly.find(params[:id])
+    @fly.destroy
+    redirect to "/flies"
+  end
 end

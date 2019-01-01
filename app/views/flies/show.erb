@@ -19,7 +19,12 @@
           <span><%= flybox.name %>: </span><input type='checkbox' name='flybox[]' value='<%= flybox.id %>'
           <%='checked' if @fly.flyboxes.include?(flybox) %>><br>
         <% end %>
-        <input type='submit' name='Edit Fly'>
+        <input type='submit' value='Edit Fly'>
+      </form>
+
+      <form method="POST" action="/flies/delete/<%= @fly.id %>">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type='submit' value="Delete Fly">
       </form>
     </div>
   </div><!--container-->
