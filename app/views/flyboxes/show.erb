@@ -14,7 +14,12 @@
       <form method="POST" action="/flyboxes/edit/<%= @flybox.id %>">
         <input id="hidden" type="hidden" name="_method" value="patch">
         <p>Flybox name: <input type='text' name='flybox_name' default="<%= @flybox.name %>" placeholder="<%= @flybox.name %>"><br></p>
-        <input type='submit' name='Edit Flybox'>
+        <input type='submit' value='Edit Flybox'>
+      </form>
+
+      <form method="POST" action="/flyboxes/delete/<%= @flybox.id %>">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type='submit' value="Delete Flybox">
       </form>
     </div>
   </div><!--container-->

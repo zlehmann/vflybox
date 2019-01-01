@@ -28,4 +28,11 @@ class FlyboxesController < ApplicationController
     @flybox.save
     redirect to "/flyboxes/#{@flybox.id}"
   end
+
+  delete '/flyboxes/delete/:id' do
+    @user = current_user
+    @flybox = Flybox.find(params[:id])
+    @flybox.destroy
+    redirect to "/flyboxes"
+  end
 end
