@@ -1,5 +1,5 @@
 <h2>Flies</h2>
 <br>
 <% @flies.each do |fly| %>
-  <%= fly.name %>
+  <a href="/flies/<%= fly.id %>"><%= fly.name %></a><br>
 <% end %>

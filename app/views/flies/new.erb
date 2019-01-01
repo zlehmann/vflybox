@@ -1,0 +1,12 @@
+<h2>Create a new fly</h2>
+
+<div class="form">
+  <form method="POST" action="/flies/new">
+    <p>Fly name: <input type='text' name='fly_name' required></p>
+    <p>Add new fly to existing flyboxes:</p>
+    <% @user.flyboxes.each do |flybox| %>
+      <span><%= flybox.name %>: </span><input type='checkbox' name='flybox[]' value='<%= flybox.id %>'><br>
+    <% end %>
+    <input type='submit' name='Create'>
+  </form>
+</div>

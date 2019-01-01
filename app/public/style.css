@@ -21,6 +21,19 @@ h2 {
   width: 25%;
 }
 
+div.content div.row {
+  margin: auto;
+}
+.container {
+  margin: auto;
+  width: 560px;
+}
+
+div.content div.row div.col-sm-8 {
+  display: inline;
+  width: 250px;
+}
+
 nav {
   width: 100%;
   background-color: #ccc;

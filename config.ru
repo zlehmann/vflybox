@@ -7,5 +7,5 @@ end
 use Rack::MethodOverride
 use UsersController
 use FliesController
-
+use FlyboxesController
 run ApplicationController

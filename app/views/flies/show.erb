@@ -1,0 +1,26 @@
+<h2>Fly: <%= @fly.name %></h2>
+
+<div class="row">
+  <div class="container">
+    <div class="col-sm-8">
+      <p>This fly is in the following flyboxes:</p>
+      <% @fly.flyboxes.each do |flybox| %>
+        <a href="/flyboxes/<%= flybox.id %>"><%= flybox.name %></a><br>
+      <% end %>
+    </div>
+
+    <div class="col-sm-8">
+      <p>Edit this fly:</p>
+      <form method="POST" action="/flies/edit/<%= @fly.id %>">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <p>Fly name: <input type='text' name='fly_name' default="<%= @fly.name %>" placeholder="<%= @fly.name %>"></p>
+        <p>Flyboxes this fly is in:</p>
+        <% @user.flyboxes.each do |flybox| %>
+          <span><%= flybox.name %>: </span><input type='checkbox' name='flybox[]' value='<%= flybox.id %>'
+          <%='checked' if @fly.flyboxes.include?(flybox) %>><br>
+        <% end %>
+        <input type='submit' name='Edit Fly'>
+      </form>
+    </div>
+  </div><!--container-->
+</div><!--row-->

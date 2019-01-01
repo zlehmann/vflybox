@@ -1,0 +1,5 @@
+<h2>List of flyboxes:</h2>
+
+<% @flyboxes.each do |flybox| %>
+  <a href="/flyboxes/<%= flybox.id %>"><%= flybox.name %></a><br>
+<% end %>
