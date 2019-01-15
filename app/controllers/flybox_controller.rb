@@ -12,7 +12,7 @@ class FlyboxesController < ApplicationController
     erb :'/flyboxes/new'
   end
 
-  post '/flyboxes/new' do
+  post '/flyboxes' do
     redirect_if_not_logged_in
     @user = current_user
     @flybox = Flybox.create(:name => params[:flybox_name], :user_id => @user.id)
@@ -34,7 +34,7 @@ class FlyboxesController < ApplicationController
     redirect to "/flyboxes/#{@flybox.id}"
   end
 
-  delete '/flyboxes/delete/:id' do
+  delete '/flyboxes/:id' do
     redirect_if_not_logged_in
     @user = current_user
     @flybox = Flybox.find(params[:id])

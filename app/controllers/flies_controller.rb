@@ -12,7 +12,7 @@ class FliesController < ApplicationController
     erb :'/flies/new'
   end
 
-  post '/flies/new' do
+  post '/flies' do
     redirect_if_not_logged_in
     @user = current_user
     @fly = Fly.create(:name => params[:fly_name])
@@ -29,7 +29,7 @@ class FliesController < ApplicationController
     erb :'/flies/show'
   end
 
-  patch '/flies/edit/:id' do
+  patch '/flies/:id' do
     redirect_if_not_logged_in
     @user = current_user
     @fly = Fly.find(params[:id])
@@ -40,7 +40,7 @@ class FliesController < ApplicationController
     redirect to "/flies/#{@fly.id}"
   end
 
-  delete '/flies/delete/:id' do
+  delete '/flies/:id' do
     redirect_if_not_logged_in
     @user = current_user
     @fly = Fly.find(params[:id])
