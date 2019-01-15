@@ -15,7 +15,7 @@ class FliesController < ApplicationController
   post '/flies' do
     redirect_if_not_logged_in
     @user = current_user
-    @fly = Fly.create(:name => params[:fly_name])
+    @fly = Fly.create(:name => params[:fly_name], :creator_id => @user.id)
     params[:flybox].each do |flybox_id|
       Flybox.find(flybox_id).flies << @fly
     end
@@ -33,8 +33,7 @@ class FliesController < ApplicationController
     redirect_if_not_logged_in
     @user = current_user
     @fly = Fly.find(params[:id])
-    binding.pry
-    @error = change_validation(@user.id, @fly.flybox_id.user_id)
+    @error = change_validation(@user.id, @fly.creator_id)
     if @error == "no error"
       @fly.name = params[:fly_name]
       @fly.flyboxes.clear
@@ -50,7 +49,12 @@ class FliesController < ApplicationController
     redirect_if_not_logged_in
     @user = current_user
     @fly = Fly.find(params[:id])
-    @fly.destroy
-    redirect to "/flies"
+    @error = change_validation(@user.id, @fly.creator_id)
+    if @error == "no error"
+      @fly.destroy
+      redirect to "/flies"
+    else
+      erb :'/error'
+    end
   end
 end
