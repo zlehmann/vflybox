@@ -23,12 +23,13 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if validate_signup(params[:username], params[:password]) == ""
+    @error = validate_signup(params[:username], params[:password])
+    if @error == "no errors"
       @user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
       redirect to "/users/show"
     else
-      redirect to "/signup"
+      erb :'/signup'
     end
   end
 

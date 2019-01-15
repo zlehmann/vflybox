@@ -1,5 +1,6 @@
 class FlyboxesController < ApplicationController
 
+
   get '/flyboxes' do
     redirect_if_not_logged_in
     @user = current_user
@@ -25,20 +26,30 @@ class FlyboxesController < ApplicationController
     erb :'/flyboxes/show'
   end
 
-  patch '/flyboxes/edit/:id' do
+  patch '/flyboxes/:id/edit' do
     redirect_if_not_logged_in
     @user = current_user
     @flybox = Flybox.find(params[:id])
-    @flybox.name = params[:flybox_name]
-    @flybox.save
-    redirect to "/flyboxes/#{@flybox.id}"
+    @error = change_validation(@user.id, @flybox.user_id)
+    if @error == "no error"
+      @flybox.name = params[:flybox_name]
+      @flybox.save
+      redirect to "/flyboxes/#{@flybox.id}"
+    else
+      erb :'/error'
+    end
   end
 
   delete '/flyboxes/:id' do
     redirect_if_not_logged_in
     @user = current_user
     @flybox = Flybox.find(params[:id])
-    @flybox.destroy
-    redirect to "/flyboxes"
+    @error = change_validation(@user.id, @flybox.user_id)
+    if @error == "no error"
+      @flybox.destroy
+      redirect to "/flyboxes"
+    else
+      erb :'/error'
+    end
   end
 end

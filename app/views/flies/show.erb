@@ -11,7 +11,7 @@
 
     <div class="col-sm-8">
       <p>Edit this fly:</p>
-      <form method="POST" action="/flies/<%= @fly.id %>">
+      <form method="POST" action="/flies/<%= @fly.id %>/edit">
         <input id="hidden" type="hidden" name="_method" value="patch">
         <p>Fly name: <input type='text' name='fly_name' default="<%= @fly.name %>" placeholder="<%= @fly.name %>"></p>
         <p>Flyboxes this fly is in:</p>

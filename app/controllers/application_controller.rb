@@ -24,6 +24,14 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find(session[:user_id])
     end
+
+    def change_validation(user_id, owner_id)
+      error = "no error"
+      if user_id != owner_id
+        error = "You cannot edit a resource you do not own."
+      end
+      error
+    end
   end
 
   #launch point

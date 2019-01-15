@@ -29,15 +29,21 @@ class FliesController < ApplicationController
     erb :'/flies/show'
   end
 
-  patch '/flies/:id' do
+  patch '/flies/:id/edit' do
     redirect_if_not_logged_in
     @user = current_user
     @fly = Fly.find(params[:id])
-    @fly.name = params[:fly_name]
-    @fly.flyboxes.clear
-    @fly.flyboxes = Flybox.find(params[:flybox])
-    @fly.save
-    redirect to "/flies/#{@fly.id}"
+    binding.pry
+    @error = change_validation(@user.id, @fly.flybox_id.user_id)
+    if @error == "no error"
+      @fly.name = params[:fly_name]
+      @fly.flyboxes.clear
+      @fly.flyboxes = Flybox.find(params[:flybox])
+      @fly.save
+      redirect to "/flies/#{@fly.id}"
+    else
+      erb :'/error'
+    end
   end
 
   delete '/flies/:id' do
