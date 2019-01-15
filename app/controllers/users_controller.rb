@@ -1,5 +1,19 @@
 class UsersController < ApplicationController
 
+  helpers do
+    def validate_signup(username, password)
+      error = "no errors"
+      if username.empty? == true
+        error = "No username entered."
+      elsif password.empty? == true
+        error = "No password entered."
+      elsif User.find_by(username: username)
+        error = "That username already exists."
+      end
+      error
+    end
+  end
+
   get '/signup' do
     if !session[:user_id]
       erb :'/users/new'
@@ -9,9 +23,13 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.create(:username => params[:username], :password => params[:password])
-    session[:user_id] = @user.id
-    redirect to "/users/show"
+    if validate_signup(params[:username], params[:password]) == ""
+      @user = User.create(:username => params[:username], :password => params[:password])
+      session[:user_id] = @user.id
+      redirect to "/users/show"
+    else
+      redirect to "/signup"
+    end
   end
 
   get '/login' do
